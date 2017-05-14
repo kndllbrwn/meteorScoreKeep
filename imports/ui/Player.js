@@ -6,8 +6,10 @@ export default class Player extends React.Component {
   render() {
     const {player} = this.props
     return (
-      <p key={player._id}>
-        {`${player.name} has ${player.score} point(s).`}
+      <div key={player._id} className="item">
+        <p>
+          {`${player.name} has ${player.score} point(s).`}
+        </p>
         <button onClick={() => {
           Players.update(player._id, {$inc: {score:1}})
         }}>+1</button>
@@ -15,7 +17,7 @@ export default class Player extends React.Component {
           Players.update(player._id, {$inc: {score:-1}})
         }}>-1</button>
         <button onClick={() => Players.remove(player._id)}>X</button>
-      </p>
+      </div>
       )
   }
 }
