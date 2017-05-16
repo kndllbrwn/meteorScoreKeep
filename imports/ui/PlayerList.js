@@ -1,30 +1,33 @@
 import React from 'react'
+import FlipMove from 'react-flip-move'
 
 import Player from './Player'
 
 export default class PlayerList extends React.Component {
-  renderPlayers(){
-    if(this.props.players.length === 0) {
+  renderPlayers () {
+    if (this.props.players.length === 0) {
       return (
-        <div className="item">
-          <p className="item__message">There are no players yet. Add one to get started!</p>
+        <div className='item'>
+          <p className='item__message'>There are no players yet. Add one to get started!</p>
         </div>
       )
-    } else {    
+    } else {
       return this.props.players.map((player) => {
-        return <Player key={player.id} player={player}/>
-     })
+        return <Player key={player._id} player={player} />
+      })
     }
   }
-  render (){
+  render () {
     return (
       <div>
-        {this.renderPlayers()}
+        <FlipMove maintainContainerHeight={true}>
+          {this.renderPlayers()}
+        </FlipMove>
       </div>
     )
   }
 }
 
 PlayerList.propTypes = {
-  players: React.PropTypes.string.isRequired
+  players: React.PropTypes.array.isRequired
 }
